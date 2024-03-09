@@ -13,7 +13,7 @@ const Home: NextPage = () => {
               1. If you have the URL of the AsyncAPI document like this:
             </p>
             <p className="text-blue-600">
-              "https://athul0491.github.io/localehost/asyncapidoc.yaml"
+              "https://studio.asyncapi.com/?base64=eyJhc3luY2Fwa..."
             </p>
             <p>
               Go to:{" "}

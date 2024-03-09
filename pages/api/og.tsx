@@ -69,7 +69,6 @@ export default async function (req: NextRequest) {
 
       return img
   } catch (error) {
-    console.error("Error:", error)
     throw new Error("Failed to generate image")
   }
 }

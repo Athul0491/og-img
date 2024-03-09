@@ -10,9 +10,6 @@ export default async function handler(
   if (req.method === "POST") {
     // Access the request body directly from req.body
     const { base64 } = req.body
-    // const docurl = searchParams.get("docurl") ?? ""
-    console.log("Request URL:", base64)
-
     const doc = await baseHelper(base64)
     const content = await docHelper(doc)
 
