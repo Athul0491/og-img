@@ -8,21 +8,41 @@ export const config = {
 }
 
 export default async function (req: NextRequest) {
-  const { searchParams } = new URL(req.url)
-  const docurl = searchParams.get("docurl") ?? ""
   let img: ImageResponse
+  let response: Response
+  const { searchParams } = new URL(req.url)
+  const docurl = searchParams.get("docurl") 
+  const base64 = searchParams.get("base64")
   
   try{
-    const response = await fetch("https://master--fav-og-img.netlify.app/api/parserr", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        docurl: docurl,
-      }),
-    })
+    if(searchParams.get("docurl") === null){
+      response = await fetch(
+        "https://master--fav-og-img.netlify.app/api/base64",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            base64: base64,
+          }),
+        }
+      )
+    }
+    else{ response = await fetch(
+      "https://master--fav-og-img.netlify.app/api/urlparser",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          docurl: docurl,
+        }),
+      }
+    )}
 
     if (!response.ok) {
       throw new Error("Failed to fetch data")

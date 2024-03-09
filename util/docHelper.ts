@@ -1,8 +1,8 @@
-import { Parser, fromURL } from "@asyncapi/parser"
+import { Parser, fromURL, AsyncAPIDocumentInterface } from "@asyncapi/parser"
 export const config = {
   runtime: "experimental-edge",
 }
-export default async function helper(docurl: string): Promise<{
+export default async function docHelper(document: AsyncAPIDocumentInterface): Promise<{
   name: string
   title: string | undefined
   description: string | undefined
@@ -11,13 +11,14 @@ export default async function helper(docurl: string): Promise<{
   messageCount: number | undefined
   version: string | undefined
 }> {
-    //   const doc: string =
-    //     '{"asyncapi":"2.4.0","info":{"title":"Example AsyncAPI specification","version":"0.1.0"},"channels":{"example-channel":{"subscribe":{"message":{"payload":{"type":"object","properties":{"exampleField":{"type":"string"},"exampleNumber":{"type":"number"},"exampleDate":{"type":"string","format":"date-time"}}}}}}}}'
-    //   console.log("AsyncAPI Document:", doc)
-    try {
-      const parser = new Parser()
-    const { document , diagnostics} = await fromURL(parser,docurl).parse();
+  //   const doc: string =
+  //     '{"asyncapi":"2.4.0","info":{"title":"Example AsyncAPI specification","version":"0.1.0"},"channels":{"example-channel":{"subscribe":{"message":{"payload":{"type":"object","properties":{"exampleField":{"type":"string"},"exampleNumber":{"type":"number"},"exampleDate":{"type":"string","format":"date-time"}}}}}}}}'
+  //   console.log("AsyncAPI Document:", doc)
+  try {
+    // const parser = new Parser()
+    // const { document, diagnostics } = await fromURL(parser, docurl).parse()
     // const { document } = await parser.parse(doc)
+
     if (!document) {
       console.error("Parsed document is undefined")
       return {
