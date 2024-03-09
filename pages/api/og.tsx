@@ -13,7 +13,7 @@ export default async function (req: NextRequest) {
   let img: ImageResponse
   
   try{
-    const response = await fetch("http://127.0.0.1:3000/api/parserr", {
+    const response = await fetch("https://master--fav-og-img.netlify.app/api/parserr", {
       method: "POST",
       headers: {
         Accept: "application/json",
