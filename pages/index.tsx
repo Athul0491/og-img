@@ -5,7 +5,7 @@ const Home: NextPage = () => {
   return (
     <div className="flex h-screen items-center justify-center bg-gray-100">
       <div className="text-center text-4xl font-black text-gray-800">
-        Generate OG card here with my help because I am a good person
+        Generate OG card here with my help because why not
         <div className="mt-8 text-center text-2xl font-black">
           There are two ways you can use this:
           <div className="mt-4 text-center text-xl font-black">
