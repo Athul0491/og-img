@@ -12,11 +12,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log("docurl:", docurl)
     const parser = new Parser()
     const { document, diagnostics } = await fromURL(parser, docurl).parse()
-    if(!document){
+    if(document===undefined){
       res.status(400).json({ content: "Invalid" })
+    }else{
+      const content = await docHelper(document)
+      res.status(200).json({ content })
     }
-    const content = await docHelper(document)
-
-    res.status(200).json({ content })
   }
 }
