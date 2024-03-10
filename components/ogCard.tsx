@@ -23,8 +23,8 @@ const OGCard = ({
     <div
       style={{
         display: "flex",
-        height: "420px",
-        width: "1000px",
+        height: "630px",
+        width: "1200px",
         justifyContent: "center",
         alignItems: "center",
         fontFamily: "mulish",
