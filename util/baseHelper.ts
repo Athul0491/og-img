@@ -9,7 +9,6 @@ export default async function baseHelper(base64: string): Promise<AsyncAPIDocume
   const { document, diagnostics } = await parser.parse(decoded)
   if (document === undefined) {
     throw new Error("Invalid")
-  }else{
-    return document
   }
+  return document
 }

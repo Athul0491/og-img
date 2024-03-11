@@ -9,8 +9,6 @@ interface Props {
 export const config = {
   runtime: "nodejs",
 }
-import logo from "../public/logo.svg"
-import Image from "next/image"
 const OGCard = ({
   title,
   description,
