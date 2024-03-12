@@ -4,7 +4,9 @@ export const config = {
   runtime: "experimental-edge",
 }
 
-export default async function docHelper(document: AsyncAPIDocumentInterface): Promise<{
+export default async function docHelper(
+  document: AsyncAPIDocumentInterface
+): Promise<{
   title: string | undefined
   description: string | undefined
   serverCount: number | undefined
@@ -13,23 +15,20 @@ export default async function docHelper(document: AsyncAPIDocumentInterface): Pr
   version: string | undefined
 }> {
   try {
-
-    const docTitle = document.info().title()
-    const description = document.info().description()
-    const serverCount = document.allServers().length
-    const channelCount = document.allChannels().length
-    const messageCount = document.allMessages().length
-    const version = document.info().version()
-
+    const info = document.info()
+    const servers = document.allServers()
+    const channels = document.allChannels()
+    const messages = document.allMessages()
     return {
-      title: docTitle,
-      description: description,
-      serverCount: serverCount,
-      channelCount: channelCount,
-      messageCount: messageCount,
-      version: version,
+      title: info ? info.title() : undefined,
+      description: info ? info.description() : undefined,
+      serverCount: servers ? servers.length : undefined,
+      channelCount: channels ? channels.length : undefined,
+      messageCount: messages ? messages.length : undefined,
+      version: info ? info.version() : undefined,
     }
   } catch (error) {
+    console.error("Error in docHelper:", error)
     return {
       title: undefined,
       description: undefined,
