@@ -1,23 +1,23 @@
-import docHelper from "../../util/docHelper"
 import { NextApiRequest, NextApiResponse } from "next"
 import baseHelper from "../../util/baseHelper"
+import docHelper from "../../util/docHelper"
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  if (req.method !== "POST") {
+    return res.status(405).end()
+  }
+  const { base64 } = req.body
+  if (!base64) {
+    return res.status(400).json({ error: "base64 parameter is required" })
+  }
   try {
-    if (req.method !== "POST") {
-      return res.status(405).end()
-    }
-
-    const { base64 } = req.body
-    const doc = await baseHelper(base64)
-    const content = await docHelper(doc)
-
-    res.status(200).json({ content })
+    const document = await baseHelper(base64)
+    const content = await docHelper(document)
+    return res.status(200).json({ content })
   } catch (error) {
-    console.error("Error processing request:", error)
-    res.status(500).json({ error: "Internal Server Error" })
+    return res.status(500).json({ error: "Internal Server Error" })
   }
 }
