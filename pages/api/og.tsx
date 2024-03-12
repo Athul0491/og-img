@@ -14,7 +14,7 @@ export default async function (req: NextRequest) {
   try {
     const responses = await Promise.all([
       docurl === null
-        ? fetch("http://localhost:3000//api/base64", {
+        ? fetch("https://fav-og-img.netlify.app/api/base64", {
             method: "POST",
             headers: {
               Accept: "application/json",
@@ -24,7 +24,7 @@ export default async function (req: NextRequest) {
               base64: base64,
             }),
           })
-        : fetch("http://localhost:3000//api/urlparser", {
+        : fetch("https://fav-og-img.netlify.app/api/urlparser", {
             method: "POST",
             headers: {
               Accept: "application/json",
